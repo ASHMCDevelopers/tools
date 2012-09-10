@@ -1,3 +1,6 @@
-[submodule "submodules/gitflow"]
-	path = submodules/gitflow
+[submodule "flowhub"]
+	path = flowhub
+	url = https://github.com/haaksmash/flowhub.git
+[submodule "gitflow"]
+	path = gitflow
 	url = https://github.com/nvie/gitflow.git
