@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+
+# collect all the staticfiles into a single place
+# MAKE SURE THIS MATCHES THE SETTINGS FOR STATIC_ROOT in the django app
+VIRTUALENV_DIR = os.path.join("home", "courses", "sites", "courses.env")
+STATIC_DIR = os.path.join(VIRTUALENV_DIR, "site", "static")
+
+
+def collectstatic():
+    """
+    Auto-runs the static collection utility provided by django.
+    """
+    return subprocess.check_call(
+        ". {}/activate; python {}/manage.py collectstatic --link --no-input".format(
+            os.path.join(VIRTUALENV_DIR, "bin"),
+            os.path.join(VIRTUALENV_DIR, "site"),
+        ),
+        shell=True,
+    )
+
+
+def compile_sass():
+    """Compiles sass files into css files."""
+    return subprocess.check_call(
+        "compass compile --sass-dir {} --css-dir {}".format(os.path.join(STATIC_DIR, 'sass'), os.path.join(STATIC_DIR, 'styles')),
+        shell=True,
+    )
+
+
+def main():
+    print "Gathering static files..."
+    if collectstatic() != 0:
+        print "\tSomething went wrong!"
+        return 1
+    print "Compiling sass to css..."
+    if compile_sass():
+        print "\tSomething went wrong!"
+        return 1
+
+if __name__ == "__main__":
+    main()
