@@ -14,7 +14,7 @@ def collectstatic():
     Auto-runs the static collection utility provided by django.
     """
     return subprocess.check_call(
-        ". {}/activate; python {}/manage.py collectstatic --link --no-input".format(
+        ". {}/activate; python {}/manage.py collectstatic --link --noinput".format(
             os.path.join(VIRTUALENV_DIR, "bin"),
             os.path.join(VIRTUALENV_DIR, "site"),
         ),
