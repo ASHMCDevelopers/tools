@@ -5,7 +5,7 @@ import subprocess
 
 # collect all the staticfiles into a single place
 # MAKE SURE THIS MATCHES THE SETTINGS FOR STATIC_ROOT in the django app
-VIRTUALENV_DIR = os.path.join("home", "courses", "sites", "courses.env")
+VIRTUALENV_DIR = os.path.join("/", "home", "courses", "sites", "courses.env")
 STATIC_DIR = os.path.join(VIRTUALENV_DIR, "site", "static")
 
 
